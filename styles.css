@@ -1,0 +1,853 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+/* Reset and default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    align-items: center;
+    padding: 0 50px;
+    font-family: "Noto Sans", sans-serif;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's on top of the hero section */
+}
+
+
+nav img {
+    max-height: 50px;
+}
+
+nav ul.nav-links {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul.nav-links li {
+    margin-left: 20px;
+}
+
+nav ul.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul.nav-links li a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #fff;
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+nav ul.nav-links li a:hover::before {
+    width: 100%;
+}
+
+nav ul.nav-links li a:hover {
+    color: #0080f0;
+}
+
+nav ul.nav-links li a:active {
+    color: #00c0fa;
+}
+
+.menu-icon {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-icon img {
+    max-height: 30px;
+}
+/* Shared styling for all section headings (h2) */
+h2.text-center {
+    font-size: 3rem; 
+    color: #fff; 
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
+    text-transform: uppercase; 
+    margin-bottom: 30px; /* Spacing under the heading */
+    position: relative; /* For animation effects */
+    letter-spacing: 2px; /* Slight letter spacing for style */
+    opacity: 0; /* Initially hidden for fade-in effect */
+    transform: translateY(20px); /* Start slightly lower for movement effect */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+}
+
+/* Looping Animation for the Heading */
+@keyframes pulseEffect {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+    }
+    50% {
+        transform: scale(1.05); /* Slightly enlarge in the middle of the loop */
+        text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.8); /* Enhance shadow */
+    }
+}
+
+/* Applying pulse animation to headings after initial fade-in */
+.page-loaded h2.text-center {
+    opacity: 1; /* Fade the heading into view */
+    transform: translateY(0); /* Reset position after fade-in */
+    animation: pulseEffect 3s infinite ease-in-out; /* Apply pulse effect in a loop */
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  #background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust the 0.3 value to control brightness */
+    z-index: 1; /* Places it above the video but behind the content */
+}
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .hero-logo {
+    width: 70%; /* Adjust this size as needed */
+    margin-bottom: 10px;
+    opacity: 0; /* Initially invisible */
+    transform: translateY(30px) scale(0.9); /* Slightly scaled down and moved */
+    transition: all 1s ease-out;
+}
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff; /* New eye-catching blue */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Adding a shadow for depth */
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95); /* Slight scaling and move effect */
+    transition: all 1.2s ease-out;
+}
+  
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #00aaff; /* Brighter blue color for the paragraph */
+    opacity: 0;
+    transform: translateY(30px); /* Initially shifted down */
+    transition: all 1.4s ease-out;
+}
+  
+.custom-button {
+    background-color: #007bff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5); /* Adding a modern 3D effect */
+}
+
+.custom-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.7); /* Enhancing the 3D effect */
+    transform: translateY(-5px); /* Button "lifts" on hover */
+}
+
+.custom-button:active {
+    background-color: #003d7a;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.7);
+    transform: translateY(2px); /* Button "presses" when active */
+}
+/* --- FADE-IN TRANSITIONS FOR HERO SECTION --- */
+.hero-content img, 
+.hero-content h1, 
+.hero-content p, 
+.hero-content .custom-button {
+    opacity: 0; /* Initially invisible */
+    transform: translateY(30px); /* Move elements down slightly */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Smooth transition */
+}
+
+/* Fade in Hero Logo */
+.hero-content img {
+    transition-delay: 0.3s; /* Starts 0.3s after page load */
+}
+
+/* Fade in H1 */
+.hero-content h1 {
+    transition-delay: 0.6s; /* Starts 0.6s after page load */
+}
+
+/* Fade in Paragraph */
+.hero-content p {
+    transition-delay: 0.9s; /* Starts 0.9s after page load */
+}
+
+/* Fade in Button */
+.hero-content .custom-button {
+    transition-delay: 1.2s; /* Starts 1.2s after page load */
+}
+
+/* When the page loads, apply the final styles */
+.page-loaded .hero-content img,
+.page-loaded .hero-content h1,
+.page-loaded .hero-content p,
+.page-loaded .custom-button {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Move back to the original position */
+}
+/* --- LOOPING ANIMATION FOR H1 --- */
+@keyframes pulseEffect {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        transform: scale(1.05); /* Slightly enlarge */
+        text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.8); /* Enhance shadow at the peak */
+    }
+}
+
+.hero-content h1.page-loaded-loop {
+    animation: pulseEffect 3s infinite ease-in-out; /* Loops with pulse effect */
+}
+ /* Service Card Styles */
+.service-card {
+    background-color: #000;
+    border: 2px solid #00c0fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card .card-body {
+    color: #fff;
+    flex-grow: 1; /* Ensures the body grows to fill available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.service-card img {
+    border-bottom: 2px solid #00c0fa;
+    width: 100%;
+    height: auto;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 192, 250, 0.5);
+}
+/* Locations Section */
+.locations-section {
+    position: relative;
+    height: 80vh;
+    color: #fff;
+    overflow: hidden;
+  }
+  
+  /* Video background for locations section */
+  #locations-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; /* Ensure it's behind the content */
+  }
+  
+  /* Overlay to darken the video */
+  .locations-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity for a darker effect */
+    z-index: 1;
+  }
+  
+  /* Content styling for the locations section */
+  .locations-section .container {
+    position: relative;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  #map-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+  }
+  /* About Us Section */
+.about-section {
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    padding: 60px 0;
+  }
+  
+  .about-title {
+    font-size: 3rem;
+    color: #00aaff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  }
+  
+  .about-subtitle {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 50px;
+    font-style: italic;
+  }
+  
+  .about-box {
+    background-color: #000000;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .about-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 123, 255, 0.3);
+  }
+  
+  .about-box h3 {
+    font-size: 1.8rem;
+    color: #00aaff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+  }
+  
+  .about-box p {
+    color: #ccc;
+    line-height: 1.7;
+  }
+  
+  .about-box ul {
+    list-style-type: none;
+    padding: 0;
+    color: #00aaff;
+  }
+  
+  .about-box ul li {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+  }
+  
+  .about-box ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #00c0fa;
+    font-weight: bold;
+  }
+  
+  .about-box i {
+    color: #00aaff;
+    margin-bottom: 20px;
+  }
+  /* Video Background */
+#reviews {
+    position: relative;
+    overflow: hidden;
+}
+
+#reviews #background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Darkens the video */
+    z-index: 1;
+}
+
+/* Fixing review card visibility */
+.review-card {
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly lighter black for better contrast */
+    border: 2px solid #00c0fa; /* Blue outline */
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 192, 250, 0.5); /* Adding a shadow */
+    z-index: 10; /* Ensuring the cards are in front */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+}
+#reviews h2 {
+    color: #fff; /* Ensure the color is pure white */
+    font-size: 2.5rem; /* Adjust font size as needed */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Add shadow for better contrast */
+    margin-bottom: 30px;
+    z-index: 2;
+    position: relative;
+}
+.review-card:hover {
+    transform: translateY(-10px); /* Add hover effect for interaction */
+    box-shadow: 0 10px 20px rgba(0, 192, 250, 0.7); /* Enhancing hover shadow */
+}
+
+/* Center-aligning paragraph and stars */
+.review-card p {
+    text-align: center;
+    color: white; /* Ensure the text is visible */
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.review-card .star-rating {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.2rem; /* Adjust size of stars */
+}
+
+/* Fix for carousel buttons and alignment */
+.carousel-control-prev, 
+.carousel-control-next {
+    z-index: 15; /* Keep carousel buttons on top */
+}
+
+/* Video background styling for review section */
+#reviews {
+    position: relative;
+    overflow: hidden;
+}
+
+#reviews::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Darken video slightly */
+    z-index: 1;
+}
+
+.review-carousel {
+    position: relative;
+    z-index: 2;
+}
+
+/* Styling for Contact Form */
+.contact-form .form-control {
+    background-color: #111;
+    color: #fff;
+    border: 2px solid #00aaff;
+    padding: 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.contact-form .form-control:focus {
+    background-color: #222;
+    border-color: #00c0fa;
+    box-shadow: none;
+}
+
+.contact-form label {
+    color: #00c0fa;
+    font-weight: 600;
+}
+
+.contact-form .form-label {
+    margin-bottom: 8px;
+}
+
+.contact-form textarea.form-control {
+    resize: none;
+}
+
+.contact-form button.custom-button {
+    background-color: #007bff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
+}
+
+.contact-form button.custom-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.7);
+    transform: translateY(-5px);
+}
+
+.contact-form button.custom-button:active {
+    background-color: #003d7a;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.7);
+    transform: translateY(2px);
+}
+/* Footer Styling */
+.footer-section {
+    position: relative;
+    color: #fff;
+    background-color: #000; /* Fallback if video doesn't load */
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+#footer-background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.footer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Darken the video background */
+    z-index: 1;
+}
+
+.footer-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.footer-heading {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #00c0fa;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.footer-section p,
+.footer-section ul,
+.footer-section a {
+    color: #ccc;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.footer-section ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #00aaff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #00c0fa;
+}
+
+/* Social Icons */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    font-size: 1.8rem;
+    color: #fff;
+    background-color: #00aaff;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #00c0fa;
+    transform: translateY(-5px);
+}
+
+/* Footer Contact Info */
+.footer-section .fa-phone-alt,
+.footer-section .fa-envelope {
+    margin-right: 10px;
+    color: #00aaff;
+}
+
+/* Footer Text Center */
+.footer-section .text-center p {
+    margin: 0;
+    color: #bbb;
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Background Styling */
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background for the modal */
+    color: #ffffff; /* White text */
+    border: 2px solid #00c0fa; /* Blue border to match the theme */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 192, 250, 0.5); /* Add a subtle glow */
+}
+
+.modal-header {
+    border-bottom: 1px solid #00c0fa; /* Blue line to separate header */
+    padding: 15px 20px;
+}
+
+.modal-title {
+    color: #00aaff; /* The same blue used in other sections */
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* Subtle shadow */
+}
+
+.modal-body {
+    padding: 20px;
+    font-size: 1.1rem;
+    color: #ffffff; /* Make the text white to contrast the dark background */
+    line-height: 1.6; /* Increase line height for readability */
+}
+
+.modal-footer {
+    border-top: 1px solid #00c0fa; /* Blue line to separate footer */
+    padding: 10px 20px;
+    text-align: right;
+}
+
+.btn-close {
+    background-color: #ffffff; /* White close button */
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+.modal-footer .btn-primary.custom-button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
+}
+
+.modal-footer .btn-primary.custom-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.7);
+}
+
+/* Darken the backdrop of the modal */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.7); /* Darken the backdrop */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1027px) {
+    nav {
+        background-color: black;
+    }
+    nav ul.nav-links {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        transition: max-height 0.4s ease, opacity 0.4s ease;
+        z-index: 10;
+    }
+
+    nav ul.nav-links.active {
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    nav ul.nav-links li {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    nav ul.nav-links li a {
+        display: block;
+        padding: 15px 0;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+    .hero-logo {
+        width: 95%; /* Adjust the width for smaller screens */
+    }
+
+}
+@media screen and (max-width: 768px) {
+    .g-4 .col {
+        padding: 1.5rem;
+      }
+      nav {
+        padding: 0 20px; /* Reduce padding on smaller screens */
+    }
+
+    nav img {
+        max-height: 40px; /* Adjust logo size for smaller screens */
+    }
+
+    .menu-icon img {
+        max-height: 25px; /* Adjust menu icon size for smaller screens */
+    }
+  
+    .hero-content h1 {
+        font-size: 2.5rem; /* Adjust for smaller screens */
+        padding: 0 20px;
+    }
+
+    .custom-button {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+    #map-container iframe {
+        height: 300px; /* Adjust the map height for smaller screens */
+      }
+      .about-box {
+        margin-bottom: 40px;
+      }
+    
+      .about-title {
+        font-size: 2.5rem;
+      }
+    
+      .about-subtitle {
+        font-size: 1rem;
+      }
+    
+      .about-box h3 {
+        font-size: 1.5rem;
+      }
+      .review-card {
+        margin-bottom: 20px;
+    }
+
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        padding: 8px;
+    }
+    h2.text-center {
+        font-size: 2.5rem; /* Adjust size for smaller screens */
+    }
+    .footer-section .row {
+        text-align: center;
+    }
+
+    .footer-section .col-md-4 {
+        margin-bottom: 30px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 450px) {
+  
+
+    nav img {
+        max-height: 35px; /* Adjust logo size for smaller screens */
+    }
+
+    .menu-icon img {
+        max-height: 20px; /* Adjust menu icon size for smaller screens */
+    }
+
+    nav ul.nav-links li a {
+        font-size: 16px; /* Slightly smaller font size for links */
+        padding: 8px 15px; /* Adjust padding for links to avoid squishing */
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .custom-button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+    h2.text-center {
+        font-size: 2rem; /* Further adjust size for very small screens */
+    }
+    
+}
